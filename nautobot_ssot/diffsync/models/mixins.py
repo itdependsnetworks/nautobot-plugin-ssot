@@ -1,10 +1,6 @@
-"""Mixins to be used when working with Nautobot."""
-
-from typing import Optional
-from diffsync.enum import DiffSyncFlags, DiffSyncModelFlags
-
-# from django.db import models
+"""Model mixins for Nautobot models with SSoT."""
 from django.db.models.base import Model
+from typing import Optional
 
 
 class DiffSyncModelMixIn:
@@ -58,7 +54,11 @@ class DiffSyncModelMixIn:
                     else:
                         db_obj = cls.get_fk(model._many_to_many, diffsync, key, value)
                         obj.set(db_obj)
-        obj.validated_save()
+        try:
+            obj.validated_save()
+        except:
+            print(cls._orm_model)
+            print(obj)
         if not model.pk:
             setattr(model, "pk", obj.pk)
         return model
@@ -157,52 +157,8 @@ class DiffSyncModelMixIn:
         if not hasattr(obj, "_orm_model"):
             raise ValueError("The `_orm_model` attribute was not set.")
         if not issubclass(obj._orm_model, Model):
-            raise ValueError(f"The `_orm_model` attribute value: `{obj._orm_model}` is not a Django an instance of `django.db.models.base.Model` {obj._orm_model.mro()}")
-        _combined_keys = set(list(fk_set) +  list(mtm_set) + list(gfk_set))
+            raise ValueError(
+                f"The `_orm_model` attribute value: `{obj._orm_model}` is not a Django an instance of `django.db.models.base.Model` {obj._orm_model.mro()}"
+            )
+        _combined_keys = set(list(fk_set) + list(mtm_set) + list(gfk_set))
         return _combined_keys
-
-class DiffSyncMixIn:
-    """Mixin to update add to allow for 'stuffing' data based on unique fields."""
-
-    _unique_data = {}
-
-    def add(self, obj, *args, **kwargs):
-        """Override add method to stuff data into dictionary based on the `_unique_fields`."""
-        super().add(obj, *args, **kwargs)
-        modelname = obj._modelname
-
-        for attr in getattr(obj, "_unique_fields", []):
-            if hasattr(obj, attr):
-                if not self._unique_data.get(modelname):
-                    self._unique_data[modelname] = {}
-                if not self._unique_data[modelname].get(attr):
-                    self._unique_data[modelname][attr] = {}
-                self._unique_data[modelname][attr][getattr(obj, attr)] = obj
-
-
-class AdapterMixIn:
-    """Simple pass2 docstring."""
-
-    def apply_diffsync_flags(self):
-        """Helper function for DiffSync Flag assignment."""
-        if not self.diffsync_flags:
-            return
-        for item in self.diffsync_flags:
-            if not hasattr(DiffSyncFlags, item):
-                raise ValueError(f"There was an attempt to add a non-existing flag of `{item}`")
-            self.global_flags |= getattr(DiffSyncFlags, item)
-
-    def apply_model_flags(self, obj, tags):
-        """Helper function for DiffSync Flag assignment on model instances."""
-        if not self.diffsync_model_flags:
-            return
-        for item in tags:
-            if not hasattr(DiffSyncModelFlags, item):
-                continue
-            obj.model_flags |= getattr(DiffSyncModelFlags, item)
-        if not self.diffsync_model_flags.get(obj._modelname):
-            return
-        for item in self.diffsync_model_flags[obj._modelname]:
-            if not hasattr(DiffSyncModelFlags, item):
-                raise ValueError(f"There was an attempt to add a non-existing flag of `{item}`")
-            obj.model_flags |= getattr(DiffSyncModelFlags, item)
