@@ -108,10 +108,11 @@ class DeviceType(DiffSyncModel):
 
     _modelname = "device_type"
     _identifiers = ("slug",)
-    _attributes = ("name",)
+    _attributes = ("name", "manufacturer")
 
     slug: str
     name: str
+    manufacturer: str
 
 
 class Manufacturer(DiffSyncModel):
@@ -126,7 +127,6 @@ class Manufacturer(DiffSyncModel):
 
     slug: str
     name: str
-
 
 
 class DeviceRole(DiffSyncModel):
