@@ -30,7 +30,7 @@ class Device(DiffSyncModel):
     _modelname = "device"
     _identifiers = ("name",)
     _attributes = ("site", "device_type", "device_role")
-    _children = {"interface": "interfaces", "device_type": "device_type", "device_role": "device_role"}
+    _children = {"interface": "interfaces"}
 
     name: str
     site: Optional[str]
@@ -126,7 +126,6 @@ class Manufacturer(DiffSyncModel):
     _modelname = "manufacturer"
     _identifiers = ("slug",)
     _attributes = ("name",)
-    _children = {"device_type": "device_types"}
 
     slug: str
     name: str
