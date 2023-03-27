@@ -1,5 +1,4 @@
 """Models commonly used in SSoT plugins."""
-from lib2to3.pgen2.token import OP
 from diffsync import DiffSyncModel
 from typing import List, Optional
 
@@ -30,11 +29,13 @@ class Device(DiffSyncModel):
 
     _modelname = "device"
     _identifiers = ("name",)
-    _attributes = ("site",)
+    _attributes = ("site", "device_type", "device_role")
     _children = {"interface": "interfaces"}
 
     name: str
     site: Optional[str]
+    device_type: Optional[str]
+    device_role: Optional[str]
     interfaces: List = []
 
 
@@ -92,6 +93,49 @@ class Status(DiffSyncModel):
     """
 
     _modelname = "status"
+    _identifiers = ("slug",)
+    _attributes = ("name",)
+
+    slug: str
+    name: str
+
+
+class DeviceType(DiffSyncModel):
+    """DeviceType Model based on DiffSyncModel.
+
+    A device_type must have a unique name.
+    """
+
+    _modelname = "device_type"
+    _identifiers = ("slug",)
+    _attributes = ("name",)
+
+    slug: str
+    name: str
+
+
+class Manufacturer(DiffSyncModel):
+    """Manufacturer Model based on DiffSyncModel.
+
+    A manufacturer must have a unique name.
+    """
+
+    _modelname = "manufacturer"
+    _identifiers = ("slug",)
+    _attributes = ("name",)
+
+    slug: str
+    name: str
+
+
+
+class DeviceRole(DiffSyncModel):
+    """Manufacturer Model based on DiffSyncModel.
+
+    A DeviceRole must have a unique name.
+    """
+
+    _modelname = "device_role"
     _identifiers = ("slug",)
     _attributes = ("name",)
 

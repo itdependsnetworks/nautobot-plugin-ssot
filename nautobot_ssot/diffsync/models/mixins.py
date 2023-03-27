@@ -54,11 +54,7 @@ class DiffSyncModelMixIn:
                     else:
                         db_obj = cls.get_fk(model._many_to_many, diffsync, key, value)
                         obj.set(db_obj)
-        try:
-            obj.validated_save()
-        except:
-            print(cls._orm_model)
-            print(obj)
+        obj.validated_save()
         if not model.pk:
             setattr(model, "pk", obj.pk)
         return model

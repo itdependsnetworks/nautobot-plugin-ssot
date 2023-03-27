@@ -4,7 +4,6 @@ import copy
 from django.test import TransactionTestCase
 from django.test.client import RequestFactory
 from django.contrib.auth import get_user_model
-import unittest
 from nautobot.dcim.models import Site, Interface
 
 from nautobot_ssot.tests.mock.basic import data as example_data
