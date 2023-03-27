@@ -109,10 +109,12 @@ class DeviceType(DiffSyncModel):
     _modelname = "device_type"
     _identifiers = ("slug",)
     _attributes = ("name", "manufacturer")
+    _children = {"device": "devices"}
 
     slug: str
     name: str
     manufacturer: str
+    devices: List = []
 
 
 class Manufacturer(DiffSyncModel):
