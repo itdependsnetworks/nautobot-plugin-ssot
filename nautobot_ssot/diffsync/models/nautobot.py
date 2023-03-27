@@ -29,7 +29,7 @@ class NautobotSite(DiffSyncModelMixIn, Site):
 class NautobotDevice(DiffSyncModelMixIn, Device):
     """Simple pass3 docstring."""
 
-    _foreign_key = {"status": "status"}
+    _foreign_key = {"device_type": "device_type", "device_role": "device_role", "site": "site", "status": "status"}
     _orm_model = dcim_models.Device
     pk: Optional[str]
 
