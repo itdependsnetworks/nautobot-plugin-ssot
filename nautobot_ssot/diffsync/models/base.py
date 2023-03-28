@@ -127,6 +127,7 @@ class Manufacturer(DiffSyncModel):
     _modelname = "manufacturer"
     _identifiers = ("slug",)
     _attributes = ("name",)
+    _children = {"device_type": "device_types"}
 
     slug: str
     name: str
