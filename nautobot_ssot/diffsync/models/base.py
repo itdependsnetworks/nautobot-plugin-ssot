@@ -143,6 +143,8 @@ class DeviceRole(DiffSyncModel):
     _modelname = "device_role"
     _identifiers = ("slug",)
     _attributes = ("name",)
+    _children = {"device": "devices"}
 
     slug: str
     name: str
+    devices: List = []
