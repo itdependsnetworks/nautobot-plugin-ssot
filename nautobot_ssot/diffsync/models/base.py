@@ -62,8 +62,8 @@ class Interface(DiffSyncModel):  # pylint: disable=too-many-instance-attributes
     device: str
     name: str
 
-    description: Optional[str]
-    mode: Optional[str]
+    description: str
+    mode: str
     tagged_vlans: List[str] = []
     untagged_vlan: Optional[str]
     type: str
