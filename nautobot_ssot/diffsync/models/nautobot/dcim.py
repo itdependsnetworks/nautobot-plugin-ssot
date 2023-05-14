@@ -10,9 +10,10 @@ from nautobot_ssot.diffsync.models.base import (
     LocationType,
     Location,
     Device,
-    Interface,
+    DeviceRedundancyGroup,
     DeviceRole,
     DeviceType,
+    Interface,
     Manufacturer,
 )
 
@@ -64,6 +65,13 @@ class NautobotDevice(DiffSyncModelMixIn, Device):
 
     _foreign_key = {"device_type": "device_type", "device_role": "device_role", "site": "site", "status": "status"}
     _orm_model = dcim_models.Device
+    pk: Optional[str]
+
+
+class NautobotDeviceRedundancyGroup(DiffSyncModelMixIn, DeviceRedundancyGroup):
+    """Simple pass3 docstring."""
+
+    _orm_model = dcim_models.DeviceRedundancyGroup
     pk: Optional[str]
 
 

@@ -11,7 +11,14 @@ class Device(DiffSyncModel):
 
     _modelname = "device"
     _identifiers = ("name",)
-    _attributes = ("site", "device_type", "device_role", "status")
+    _attributes = (
+        "site",
+        "device_type",
+        "device_role",
+        "status",
+        "device_redundancy_group",
+        "device_redundancy_group_priority",
+    )
     _children = {"interface": "interfaces"}
 
     name: str
@@ -20,6 +27,24 @@ class Device(DiffSyncModel):
     device_type: Optional[str]
     device_role: Optional[str]
     interfaces: List = []
+    device_redundancy_group_priority: Optional[str]
+    device_redundancy_group: Optional[str]
+
+
+class DeviceRedundancyGroup(DiffSyncModel):
+    """DeviceRedundancyGroup Model based on DiffSyncModel.
+
+    A deviceredundancygroup must have a unique name and can be part of a site.
+    """
+
+    _modelname = "deviceredundancygroup"
+    _identifiers = ("name",)
+    _attributes = ("slug", "description", "failover_strategy", "comments")
+
+    name: str
+    description: Optional[str] = ""
+    failover_strategy: Optional[str] = ""
+    comments: Optional[str] = ""
 
 
 class DeviceRole(DiffSyncModel):
