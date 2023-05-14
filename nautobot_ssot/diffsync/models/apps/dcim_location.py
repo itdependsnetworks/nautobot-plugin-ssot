@@ -60,6 +60,7 @@ class Region(DiffSyncModel):
     parent: Optional[str]
     slug: str
     name: str
+    children: List[str] = []
 
 
 class Site(DiffSyncModel):
