@@ -42,6 +42,7 @@ class DeviceRedundancyGroup(DiffSyncModel):
     _attributes = ("slug", "description", "failover_strategy", "comments")
 
     name: str
+    slug: str
     description: Optional[str] = ""
     failover_strategy: Optional[str] = ""
     comments: Optional[str] = ""
