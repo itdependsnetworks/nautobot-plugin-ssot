@@ -110,3 +110,4 @@ class Site(DiffSyncModel):
     contact_phone: Optional[str]
     contact_email: Optional[str]
     comments: Optional[str]
+    time_zone: Optional[str]
