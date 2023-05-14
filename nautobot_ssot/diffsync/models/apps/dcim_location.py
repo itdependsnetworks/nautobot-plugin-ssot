@@ -56,7 +56,7 @@ class Region(DiffSyncModel):
         "description",
     )
     _children = {"region": "children", "site": "sites"}
-    description: Optional[str]
+    description: Optional[str] = ""
     parent: Optional[str]
     slug: str
     name: str
@@ -99,15 +99,15 @@ class Site(DiffSyncModel):
     status: str
     region: Optional[str]
     tenant: Optional[str]
-    facility: Optional[str]
+    facility: Optional[str] = ""
     asn: Optional[str]
-    description: Optional[str]
-    physical_address: Optional[str]
-    shipping_address: Optional[str]
+    description: Optional[str] = ""
+    physical_address: Optional[str] = ""
+    shipping_address: Optional[str] = ""
     latitude: Optional[float]
     longitude: Optional[float]
-    contact_name: Optional[str]
-    contact_phone: Optional[str]
-    contact_email: Optional[str]
-    comments: Optional[str]
-    time_zone: Optional[str]
+    contact_name: Optional[str] = ""
+    contact_phone: Optional[str] = ""
+    contact_email: Optional[str] = ""
+    comments: Optional[str] = ""
+    time_zone: Optional[str] = ""

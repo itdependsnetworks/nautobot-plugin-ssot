@@ -29,5 +29,5 @@ class Tag(DiffSyncModel):
 
     slug: str
     name: str
-    description: Optional[str]
+    description: Optional[str] = ""
     color: Optional[str]
