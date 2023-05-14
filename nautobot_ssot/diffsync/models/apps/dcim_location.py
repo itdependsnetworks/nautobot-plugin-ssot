@@ -20,6 +20,7 @@ class Location(DiffSyncModel):
     location_type: str
     site: Optional[str]
     tenant: Optional[str]
+    locations: List[str] = []
 
 
 class LocationType(DiffSyncModel):
@@ -38,6 +39,7 @@ class LocationType(DiffSyncModel):
     name: str
     nestable: bool
     content_types: List[str] = []
+    locations: List[str] = []
 
 
 class Region(DiffSyncModel):
