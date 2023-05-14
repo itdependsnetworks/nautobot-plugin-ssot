@@ -1,13 +1,14 @@
 from nautobot_ssot.diffsync.models.nautobot.dcim import (
-    NautobotSite,
-    NautobotRegion,
-    NautobotLocationType,
-    NautobotLocation,
     NautobotDevice,
-    NautobotInterface,
     NautobotDeviceRole,
+    NautobotDeviceRedundancyGroup,
     NautobotDeviceType,
+    NautobotLocation,
+    NautobotLocationType,
+    NautobotInterface,
     NautobotManufacturer,
+    NautobotRegion,
+    NautobotSite,
 )
 from nautobot_ssot.diffsync.models.nautobot.extras import NautobotStatus, NautobotTag
 from nautobot_ssot.diffsync.models.nautobot.ipam import NautobotVlan
@@ -15,6 +16,7 @@ from nautobot_ssot.diffsync.models.nautobot.ipam import NautobotVlan
 
 __all__ = (
     "NautobotDevice",
+    "NautobotDeviceRedundancyGroup",
     "NautobotDeviceRole",
     "NautobotDeviceType",
     "NautobotInterface",
