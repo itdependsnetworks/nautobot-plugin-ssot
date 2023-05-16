@@ -35,8 +35,8 @@ class Device(DiffSyncModel):
     device_redundancy_group: Optional[str]
     platform: Optional[str]
     tenant: Optional[str]
-    serial: Optional[str]
-    asset_tag: Optional[str]
+    serial: Optional[str] = ""
+    asset_tag: Optional[str] = ""
 
 
 class DeviceRedundancyGroup(DiffSyncModel):
