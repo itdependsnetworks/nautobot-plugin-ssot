@@ -18,6 +18,10 @@ class Device(DiffSyncModel):
         "status",
         "device_redundancy_group",
         "device_redundancy_group_priority",
+        "platform",
+        "tenant",
+        "serial",
+        "asset_tag",
     )
     _children = {"interface": "interfaces"}
 
@@ -29,6 +33,10 @@ class Device(DiffSyncModel):
     interfaces: List = []
     device_redundancy_group_priority: Optional[str]
     device_redundancy_group: Optional[str]
+    platform: Optional[str]
+    tenant: Optional[str]
+    serial: Optional[str]
+    asset_tag: Optional[str]
 
 
 class DeviceRedundancyGroup(DiffSyncModel):
@@ -126,3 +134,18 @@ class Manufacturer(DiffSyncModel):
     slug: str
     name: str
     device_types: List = []
+
+
+class Platform(DiffSyncModel):
+    """Platform Model based on DiffSyncModel.
+
+    A platform must have a unique name.
+    """
+
+    _modelname = "platform"
+    _identifiers = ("slug",)
+    _attributes = ("name", "manufacturer", "napalm_driver", "napalm_args", "description")
+    manufacturer: Optional[str] = ""
+    napalm_driver: Optional[str] = ""
+    napalm_args: Optional[dict] = {}
+    description: Optional[str] = ""

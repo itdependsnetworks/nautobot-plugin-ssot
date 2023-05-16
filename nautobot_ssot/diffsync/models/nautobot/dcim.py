@@ -15,6 +15,7 @@ from nautobot_ssot.diffsync.models.base import (
     DeviceType,
     Interface,
     Manufacturer,
+    Platform,
 )
 
 
@@ -63,7 +64,14 @@ class NautobotRegion(DiffSyncModelMixIn, Region):
 class NautobotDevice(DiffSyncModelMixIn, Device):
     """Simple pass3 docstring."""
 
-    _foreign_key = {"device_type": "device_type", "device_role": "device_role", "site": "site", "status": "status"}
+    _foreign_key = {
+        "device_type": "device_type",
+        "device_role": "device_role",
+        "site": "site",
+        "status": "status",
+        "platform": "platform",
+        "tenant": "tenant",
+    }
     _orm_model = dcim_models.Device
     pk: Optional[str]
 
@@ -104,3 +112,11 @@ class NautobotManufacturer(DiffSyncModelMixIn, Manufacturer):
 
     _orm_model = dcim_models.Manufacturer
     pk: Optional[str]
+
+
+class NautobotPlatform(DiffSyncModelMixIn, Platform):
+    """Extension of the Platform model."""
+
+    _orm_model = dcim_models.Platform
+    pk: Optional[str]
+    _foreign_key = {"manufacturer": "manufacturer"}

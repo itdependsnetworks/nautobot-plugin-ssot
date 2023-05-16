@@ -6,6 +6,7 @@ from nautobot_ssot.diffsync.models.apps.dcim_device import (
     Interface,
     DeviceType,
     Manufacturer,
+    Platform,
     DeviceRole,
     DeviceRedundancyGroup,
 )
@@ -21,6 +22,7 @@ __all__ = (
     "Location",
     "LocationType",
     "Manufacturer",
+    "Platform",
     "Region",
     "Site",
     "Status",
