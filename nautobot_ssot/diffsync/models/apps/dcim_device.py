@@ -145,6 +145,9 @@ class Platform(DiffSyncModel):
     _modelname = "platform"
     _identifiers = ("slug",)
     _attributes = ("name", "manufacturer", "napalm_driver", "napalm_args", "description")
+
+    slug: str
+    name: str
     manufacturer: Optional[str] = ""
     napalm_driver: Optional[str] = ""
     napalm_args: Optional[dict] = {}
