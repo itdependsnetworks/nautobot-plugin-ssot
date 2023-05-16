@@ -7,6 +7,7 @@ from nautobot_ssot.diffsync.models.nautobot.dcim import (
     NautobotLocationType,
     NautobotInterface,
     NautobotManufacturer,
+    NautobotPlatform,
     NautobotRegion,
     NautobotSite,
 )
@@ -23,6 +24,7 @@ __all__ = (
     "NautobotLocation",
     "NautobotLocationType",
     "NautobotManufacturer",
+    "NautobotPlatform",
     "NautobotRegion",
     "NautobotSite",
     "NautobotStatus",
