@@ -1,7 +1,6 @@
 """Management command to destroy and build from test dictionary."""
 
 from django.core.management.base import BaseCommand
-from django.core import management
 from nautobot.dcim.models import Site, DeviceRole, DeviceType, Manufacturer, Device, Interface, Platform
 from nautobot.ipam.models import IPAddress, VLAN, Prefix
 

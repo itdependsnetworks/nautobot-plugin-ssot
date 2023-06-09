@@ -149,12 +149,14 @@ data = {
             "name": "ams01",
             "devices": ["ams01-edge-01", "ams01-edge-02", "ams01-edge-03"],
             "vlans": ["ams01__101", "ams01__102", "ams01__103"],
+            "status": "active",
         }
     },
     "device": {
         "ams01-edge-01": {
             "name": "ams01-edge-01",
             "site": "ams01",
+            "status": "active",
             "interfaces": [
                 "ams01-edge-01__vlan101",
                 "ams01-edge-01__Ethernet1/1",
@@ -168,6 +170,7 @@ data = {
         "ams01-edge-02": {
             "name": "ams01-edge-02",
             "site": "ams01",
+            "status": "active",
             "interfaces": [
                 "ams01-edge-02__vlan102",
                 "ams01-edge-02__Ethernet1/1",
@@ -178,6 +181,7 @@ data = {
         "ams01-edge-03": {
             "name": "ams01-edge-03",
             "site": "ams01",
+            "status": "active",
             "interfaces": [
                 "ams01-edge-03__vlan103",
                 "ams01-edge-03__Ethernet1/1",
